@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      //   let input;
+      let h3;
+
+      function genderJudgment() {
+        let input = document.getElementsByName("joomin");
+        let value = input[1].value;
+
+        let genderDigit = value.charAt(0);
+
+        if (value.length >= 7) {
+          if (genderDigit == 1 || genderDigit == 3) {
+            h3.innerText = "남성";
+          } else if (genderDigit == 2 || genderDigit == 4) {
+            h3.innerText = "여성";
+          } else {
+            h3.innerText = "정보가 없습니다.";
+          }
+        }
+      }
+      addEventListener("load", function () {
+        h3 = document.getElementById("ment");
+      });
+    </script>
+  </head>
+  <body>
+    <p>
+      <input name="joomin" type="text" placeholder="주민번호 앞 6자리" />
+      -
+      <input
+        name="joomin"
+        type="text"
+        onkeyup="genderJudgment()"
+        placeholder="주민번호 앞 7자리"
+      />
+    </p>
+
+    <h3 id="ment">-</h3>
+  </body>
+</html>

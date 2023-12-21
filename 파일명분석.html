@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- <style>
+      input[type="file"] {
+        background-color: aqua;
+      }
+    </style> -->
+
+    <script>
+      let f;
+      // 사용자가 선탣한 파일명을 분석하여, 파일의 이름은
+      // 텍스트1, 파일의 확장자는 텍스트2에 출력
+      function getFileInfo() {
+        // 파일 탐색디에서 선택된 파일의 풀 이름 얻기
+        let filename = f.value;
+        console.log("당신이 선택한 파일은?", filename);
+
+        // 역슬레쉬는 순수한 문자로 사용되야하기 때뮨에 이스케이프시키자!
+        let listIndex = filename.lastIndexOf("\\");
+        console.log("마지막 백슬레쉬의 위치는", listIndex);
+
+        // 구해온 백슬래시의 마지막 인덴스부터 ~ 경로의 끝까지 추출
+        let str = filename.substring(listIndex + 1, filename.length);
+        console.log("경로에서 파일명 확장자 추출", str);
+
+        let arr = str.split("."); // .을 기준으로 문자열들을 분할.. 배열반환
+
+        // 이름이 같은 컴포넌트는 실행 시에, 배열로 올라온다.
+        let txt = document.getElementsByName("txt");
+        txt[0].value = arr[0]; // 파일이름
+        txt[1].value = arr[1]; // 확장자
+      }
+
+      addEventListener("load", function () {
+        f = document.querySelector("input[type='file']");
+
+        f.addEventListener("change", function () {
+          console.log("파일 교체했어?");
+          getFileInfo();
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input type="file" />
+    <p>
+      <input type="text" name="txt" placeholder="파일명 올 곳" />
+      <input type="text" name="txt" placeholder="확장자 올 곳" />
+    </p>
+  </body>
+</html>
